@@ -1,6 +1,7 @@
 name: Deploy to Yandex Object Storage
 on:
-  # Enable push deployment after dedicated bucket credentials are configured.
+  push:
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
