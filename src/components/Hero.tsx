@@ -1,23 +1,10 @@
 import { ArrowDown } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Messengers from "./Messengers";
 
-// Счётчик «убрано»: число текущего дня месяца × множитель.
-// Множитель стартует с 63 (июль 2026) и растёт на 2 каждый следующий месяц.
-function computeArea() {
-  const d = new Date();
-  const day = d.getDate();
-  const monthsSince = (d.getFullYear() - 2026) * 12 + (d.getMonth() - 6);
-  const mult = 63 + 2 * Math.max(0, monthsSince);
-  return day * mult;
-}
-
 export default function Hero() {
-  // На сервере/до монтирования — null (без числа), чтобы не было рассинхрона гидрации.
-  // Реальное значение считаем на клиенте после монтирования.
-  const [area, setArea] = useState<number | null>(null);
-  useEffect(() => setArea(computeArea()), []);
-
+  const [area] = useState<number | null>(null);
+  // Calendar statistics are not enabled for this domain yet; show the truthful fallback.
   return (
     <section id="top" className="relative overflow-hidden bg-white pt-[72px]">
       <div className="container-x grid items-center gap-10 py-14 md:py-20 lg:grid-cols-[1.1fr_1fr]">
@@ -34,10 +21,10 @@ export default function Hero() {
             className="mt-1 block leading-[0.8] text-emerald text-[13vw] md:text-[66px]"
             style={{ fontFamily: "'Caveat', cursive" }}
           >
-            в Воронеже
+            в Калуге
           </span>
           <p className="mt-6 max-w-md text-lg leading-relaxed text-ink/70 md:text-xl">
-            Доступный клининг в каждую квартиру и дом Воронежа.
+            Доступный клининг в каждую квартиру и дом Калуги.
             Точная цена за 2 минуты — до приезда, а не после.
           </p>
           <div className="mt-9">
@@ -62,15 +49,13 @@ export default function Hero() {
           </dl>
         </div>
         <div className="relative">
-          <img src="./images/hero-voronezh.webp" alt="Чистый тёплый интерьер с видом на Благовещенский собор в Воронеже" className="aspect-[4/5] w-full rounded-3xl object-cover" fetchPriority="high" />
-          <div className="absolute right-4 top-4 rounded-full border border-white/30 bg-graphite/75 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-sm md:right-6 md:top-6">
-            Воронеж · центр города
-          </div>
+          <img src="/images/hero-kaluga.webp" alt="Светлая квартира с видом на музей космонавтики и ракету «Восток» в Калуге" className="aspect-[4/5] w-full rounded-3xl object-cover" fetchPriority="high" />
           <div className="absolute -bottom-5 -left-5 hidden rounded-2xl bg-white p-5 shadow-card md:block">
-            <div className="text-[11px] font-semibold uppercase tracking-widest2 text-emerald">убрано в этом месяце</div>
+            <div className="text-[11px] font-semibold uppercase tracking-widest2 text-emerald">{area === null ? 'приёмка по стандарту' : 'убрано в этом месяце'}</div>
             <div className="mt-1 text-2xl font-bold text-graphite">
-              {area === null ? "…" : `${area.toLocaleString("ru-RU")} м²`}
+              {area === null ? '47 пунктов' : `${area.toLocaleString('ru-RU')} м²`}
             </div>
+            {area !== null && <div className="mt-1 text-xs text-ink/55">по всем городам «Вершины»</div>}
           </div>
         </div>
       </div>

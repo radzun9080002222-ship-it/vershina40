@@ -1,7 +1,6 @@
 name: Deploy to Yandex Object Storage
 on:
-  push:
-    branches: [main]
+  # Enable push deployment after dedicated bucket credentials are configured.
   workflow_dispatch:
 permissions:
   contents: read
@@ -16,7 +15,7 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.YC_STATIC_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: ru-central1
       AWS_EC2_METADATA_DISABLED: "true"
-      YC_BUCKET: vershina-36.ru
+      YC_BUCKET: vershina40.ru
       YC_ENDPOINT: https://storage.yandexcloud.net
     steps:
       - uses: actions/checkout@v4

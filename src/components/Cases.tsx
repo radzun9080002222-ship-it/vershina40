@@ -43,7 +43,7 @@ export default function Cases() {
         <div className="kicker">Результаты</div>
         <h2 className="mt-3 text-3xl font-semibold text-graphite md:text-4xl">Двигайте ползунок.</h2>
         <p className="mt-4 max-w-md text-sm leading-7 text-ink/60">
-          Примеры уровня работы команды. Состав работ и время заранее фиксируем под ваш объект.
+          Визуализации результата уборки. Изображения созданы с помощью ИИ, это не фотографии выполненных заказов. Состав работ и время заранее фиксируем под ваш объект.
         </p>
         <div className="mt-12 grid gap-8 lg:grid-cols-3">
           {CASES.map((c) => (

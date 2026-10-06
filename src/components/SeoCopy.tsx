@@ -7,16 +7,16 @@ const prices = [
 
 export default function SeoCopy() {
   return (
-    <section aria-labelledby="voronezh-cleaning-title" className="bg-mist py-16 md:py-20">
+    <section aria-labelledby="kaluga-cleaning-title" className="bg-mist py-16 md:py-20">
       <div className="container-x grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
         <div>
-          <div className="kicker">Клининг в Воронеже</div>
-          <h2 id="voronezh-cleaning-title" className="mt-3 text-3xl font-semibold leading-snug text-graphite md:text-4xl">
+          <div className="kicker">Клининг в Калуге</div>
+          <h2 id="kaluga-cleaning-title" className="mt-3 text-3xl font-semibold leading-snug text-graphite md:text-4xl">
             Уборка квартир и домов с понятной ценой
           </h2>
           <p className="mt-5 max-w-xl text-sm leading-7 text-ink/65">
             «Вершина» выполняет влажную и генеральную уборку, клининг после ремонта
-            и комплексную уборку под ключ в Воронеже. Мы привозим оборудование и
+            и комплексную уборку под ключ в Калуге. Мы привозим оборудование и
             профессиональные средства, работаем по чек-листу и заранее фиксируем стоимость.
           </p>
           <p className="mt-3 max-w-xl text-sm leading-7 text-ink/65">

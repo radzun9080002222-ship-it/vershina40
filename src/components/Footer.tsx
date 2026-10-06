@@ -16,7 +16,7 @@ export default function Footer() {
         </nav>
         <div className="space-y-2.5 text-sm text-ink/70">
           <a href={PHONE_HREF} className="block font-semibold text-graphite hover:text-emerald">{PHONE}</a>
-          <span className="block">Воронеж · выезд по городу</span>
+          <span className="block">Калуга · выезд по городу</span>
         </div>
       </div>
       <div className="border-t border-black/5">
