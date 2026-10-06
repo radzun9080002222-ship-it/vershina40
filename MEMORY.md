@@ -119,3 +119,14 @@
 - Все 13 файлов JS/CSS/изображений, favicon.ico, robots.txt, sitemap.xml и privacy.html публично HTTP200. www/privacy.html — HTTPS301 на основной домен с сохранением пути. Ограничение потери query string стандартного www-редиректа сохраняется.
 - Публичный калькулятор интерактивно проверен: генеральная 60 м² = 15 000 ₽, после ремонта 60 м² = 18 000 ₽. Последние Cloud и Pages Actions success. Цены, контент, аналитика и рекламные URL не менялись, GitHub Pages сохранён.
 - Фоновое наблюдение за миграцией завершено; автоматизация удаляется после финальной проверки.
+
+## Калуга — Cloud подключён, 07.10.2026 00:54 МСК
+
+- Это текущие ресурсы Калуги, не историческая конфигурация Воронежа выше. Бакеты vershina40.ru/www.vershina40.ru созданы: Standard, лимит 1 ГБ, публично только чтение объектов; список и настройки закрыты. Главный хостинг index.html, www HTTPS-редирект на vershina40.ru; стандартный редирект сохраняет путь, но теряет query string.
+- Cloud DNS vershina40-ru, ID dnsd607vehpo04igvbf1: ANAME корня на vershina40.ru.website.yandexcloud.net., CNAME www на www.vershina40.ru.website.yandexcloud.net., TTL 600. Публичное делегирование ns1.yandexcloud.net/ns2.yandexcloud.net подтверждено.
+- Managed SSL fpq8s2quk3jb541vquhv для обоих имён, пока Validating. Обе ACME CNAME созданы автоматически в Cloud DNS и публично разрешаются. В логах первая неудачная проверка 00:41 до распространения DNS. Не пересоздавать сертификат; после Issued привязать к обоим бакетам и проверить штатный TLS.
+- Отдельный сервисный аккаунт vershina40-deployer, ID aje14uagpf5tnroqerh8: storage.editor назначен напрямую только основному бакету, без ролей каталога. Пользователь подтвердил создание ключа и передачу в два GitHub Actions Secrets. Значения ключей не хранить в коде, памяти, логах.
+- Push main запускает deploy-yandex-cloud.yml, ubuntu-24.04-arm. Первый Cloud run 37535883729 success, следующая публикация Метрики 37536336434 success. Все реальные JS/CSS/фото из опубликованного HTML и robots/sitemap/privacy/CNAME HTTP200 на website endpoint.
+- Отдельная Метрика dima.radzun: 113501726, Вебвизор включён, пользователь отдельно подтвердил соглашение. Код public/metrika.js установлен на главной и privacy. Цели click_phone, click_max, click_telegram, click_whatsapp, calc_interaction; последняя отслеживает кнопки и площадь.
+- Вебмастер: сайт https://vershina40.ru добавлен в dima.radzun; метатег a1520fb37d71f315. Подтверждение прав и sitemap/переобход выполнить после работающего публичного HTTPS, пока НЕ отправлено.
+- Мобильный экран 390x844 без горизонтального переполнения. Калькулятор: general 60=15000, renovation 60=18000, turnkey standard 60=27000, panorama 60=33000. Цены сочинские, контакты неизменны. Бейдж пока честные 47 пунктов: статистика календаря НЕ подключена.

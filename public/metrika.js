@@ -8,6 +8,7 @@
   script.src = 'https://mc.yandex.ru/metrika/tag.js?id=' + id;
   document.head.appendChild(script);
   document.addEventListener('click', function (event) {
+    if (event.target.closest && event.target.closest('#calc button')) window.ym(id, 'reachGoal', 'calc_interaction');
     var link = event.target.closest && event.target.closest('a[href]');
     if (!link) return;
     var href = link.getAttribute('href');
