@@ -20,7 +20,7 @@ export default function FinalCta() {
         </h2>
         <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
           <a href={MAX_LINK} target="_blank" rel="noreferrer" className="btn-primary">Написать в MAX</a>
-          <a href="#calc" className="rounded-full border border-graphite/25 px-7 py-3.5 text-sm font-semibold text-graphite transition hover:border-emerald hover:text-emerald">Рассчитать цену</a>
+          <a href={PHONE_HREF} className="rounded-full border border-graphite/25 px-7 py-3.5 text-sm font-semibold text-graphite transition hover:border-emerald hover:text-emerald">Позвонить</a>
         </div>
         <Messengers className="mt-6 justify-center" items={["tg", "wa"]} />
         <a href={PHONE_HREF} className="mt-6 block text-sm font-semibold text-ink/60 hover:text-emerald">или по телефону: {PHONE}</a>

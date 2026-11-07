@@ -1,4 +1,5 @@
-import { ArrowDown } from "lucide-react";
+import { Phone } from "lucide-react";
+import { PHONE_HREF } from "../data";
 import { useState } from "react";
 import Messengers from "./Messengers";
 
@@ -28,8 +29,8 @@ export default function Hero() {
             Точная цена за 2 минуты — до приезда, а не после.
           </p>
           <div className="mt-9">
-            <a href="#calc" className="btn-primary">
-              Узнать свою цену <ArrowDown size={16} />
+            <a href={PHONE_HREF} className="btn-primary">
+              Позвонить <Phone size={16} />
             </a>
           </div>
           <Messengers className="mt-5" />
