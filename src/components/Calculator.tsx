@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { ArrowRight } from "lucide-react";
-import { TARIFFS, MAX_LINK, WA_LINK } from "../data";
+import { ArrowRight, Phone } from "lucide-react";
+import { TARIFFS, MAX_LINK, PHONE_HREF } from "../data";
 
-import { calculateVisit, createQuote } from "../pricing";
+import { calculateVisit } from "../pricing";
 
 const fmt = (n: number) => n.toLocaleString("ru-RU");
 
@@ -11,15 +11,9 @@ export default function Calculator() {
   const [tariffId, setTariffId] = useState("regular");
   const [rateOptionId, setRateOptionId] = useState("standard");
   const tariff = TARIFFS.find((t) => t.id === tariffId);
-  const [copyStatus, setCopyStatus] = useState("");
   const rateOption = tariff?.rateOptions?.find((option) => option.id === rateOptionId);
   const rate = tariff?.rate ?? rateOption?.rate ?? null;
   const price = calculateVisit(rate && area > 0 ? [rate * area] : []);
-  const quote = tariff && rate ? createQuote(tariff.name, rateOption?.name, area, rate, price) : "";
-  const copyQuote = async () => {
-    try { await navigator.clipboard.writeText(quote); setCopyStatus("Расчёт скопирован — вставьте его в сообщение."); }
-    catch { setCopyStatus("Не удалось скопировать автоматически. Выделите и скопируйте расчёт ниже."); }
-  };
 
   return (
     <section id="calc" className="bg-graphite py-20 text-white md:py-28">
@@ -42,7 +36,7 @@ export default function Calculator() {
             {TARIFFS.map((t) => (
               <button
                 key={t.id}
-                onClick={() => { setTariffId(t.id); setCopyStatus(""); }}
+                onClick={() => { setTariffId(t.id); }}
                 aria-pressed={t.id === tariffId}
                 className={`max-w-full whitespace-normal rounded-full px-4 py-2 text-[13px] font-semibold transition ${
                   t.id === tariffId ? "bg-emerald text-white" : "bg-white/10 text-white/70 hover:bg-white/15"
@@ -111,15 +105,11 @@ export default function Calculator() {
                 <div className="mt-1 text-2xl font-bold text-white">0 ₽</div>
               </>
             )}
-            <button type="button" className="mt-4 text-xs text-white/60 underline" onClick={() => { setTariffId(""); setArea(25); setRateOptionId("standard"); setCopyStatus(""); }}>Очистить расчёт</button>
-            {quote && <>
-              <label htmlFor="cleaning-quote" className="mt-5 block text-xs text-white/60">Ваш расчёт для заявки</label>
-              <textarea id="cleaning-quote" readOnly value={quote} rows={5} className="mt-2 w-full min-w-0 rounded-xl border border-white/15 bg-transparent p-3 text-xs leading-5 text-white/75" />
-              <button type="button" onClick={copyQuote} className="mt-2 text-sm text-white underline">Скопировать расчёт</button>
-              <p role="status" aria-live="polite" className="mt-2 text-xs text-white/60">{copyStatus}</p>
-              <a href={MAX_LINK} target="_blank" rel="noreferrer" className="btn-primary mt-4 w-full justify-center">Забронировать в MAX <ArrowRight size={16} /></a>
-              <a href={WA_LINK.split("?")[0] + "?text=" + encodeURIComponent(quote)} target="_blank" rel="noreferrer" className="mt-3 block text-center text-sm text-white/75 underline">Отправить расчёт в WhatsApp</a>
-              <p className="mt-4 text-center text-[11px] text-white/50">Для MAX скопируйте расчёт и вставьте в сообщение. Оплата — после приёмки работы.</p>
+            <button type="button" className="mt-4 text-xs text-white/60 underline" onClick={() => { setTariffId(""); setArea(25); setRateOptionId("standard"); }}>Очистить расчёт</button>
+            {price > 0 && <>
+              <a href={MAX_LINK} target="_blank" rel="noreferrer" className="btn-primary mt-6 w-full justify-center">Забронировать в MAX <ArrowRight size={16} /></a>
+              <a href={PHONE_HREF} className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"><Phone size={16} /> Позвонить</a>
+              <p className="mt-4 text-center text-[11px] text-white/50">Оплата — после приёмки работы.</p>
             </>}
           </div>
         </div>

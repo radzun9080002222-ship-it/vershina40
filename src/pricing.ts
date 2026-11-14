@@ -5,6 +5,3 @@ export function calculateVisit(amounts: readonly number[]): number {
   const subtotal = amounts.reduce((sum, amount) => sum + amount, 0);
   return subtotal > 0 ? Math.max(subtotal, MINIMUM_VISIT_PRICE) : 0;
 }
-export function createQuote(name: string, windows: string | undefined, area: number, rate: number, total: number): string {
-  return ["Здравствуйте! Хочу заказать уборку.", name + (windows ? " — " + windows : ""), "Площадь: " + area + " м²", "Ставка: " + rate + " ₽/м²", "Итого: " + total.toLocaleString("ru-RU") + " ₽", "Минимум выезда: 6 000 ₽ на общую сумму услуг."].join("\n");
-}
