@@ -11,7 +11,7 @@ export default function Services() {
     <section id="services" className="bg-white py-20 md:py-28">
       <div className="container-x">
         <div className="kicker">Услуги</div>
-        <h2 className="mt-3 text-3xl font-semibold text-graphite md:text-4xl">Четыре уровня. Один стандарт.</h2>
+        <h2 className="mt-3 text-3xl font-semibold text-graphite md:text-4xl">Пять уровней. Один стандарт.</h2>
         <p className="mt-4 max-w-lg text-sm leading-7 text-ink/60">
           Каждая услуга — это конкретный список работ, который вы видите до заказа
           и по которому принимаете результат.
@@ -24,7 +24,7 @@ export default function Services() {
               <div key={t.id}>
                 <button
                   onClick={() => setOpenId(open ? null : t.id)}
-                  className="grid w-full grid-cols-[auto_1fr_auto] items-baseline gap-4 py-7 text-left transition hover:bg-mist/60 md:grid-cols-[60px_1fr_220px_40px] md:gap-6"
+                  className="grid w-full grid-cols-[auto_minmax(0,1fr)_auto] items-baseline gap-4 py-7 text-left transition hover:bg-mist/60 md:grid-cols-[60px_minmax(0,1fr)_220px_40px] md:gap-6"
                 >
                   <span className="text-sm font-bold text-emerald">{t.n}</span>
                   <span>

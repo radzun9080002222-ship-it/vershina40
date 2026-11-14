@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { TARIFFS } from '../src/data.ts';
 
-const expected = { regular: [160, 6000], general: [250, 9000], 'after-renovation': [300, 12000] };
+const expected = { regular: [150, 6000], general: [230, 6000], 'after-renovation': [280, 6000] };
 for (const [id, [rate, minimum]] of Object.entries(expected)) {
   const tariff = TARIFFS.find(t => t.id === id);
   assert.ok(tariff, `Missing tariff ${id}`);
@@ -12,12 +12,12 @@ for (const [id, [rate, minimum]] of Object.entries(expected)) {
     assert.equal(Math.max(tariff.rate * area, tariff.minPrice), Math.max(rate * area, minimum));
   }
 }
-const turnkey = TARIFFS.find(t => t.rateOptions);
-assert.equal(turnkey.minPrice, 12000);
-assert.deepEqual(turnkey.rateOptions.map(t => t.rate), [450, 550]);
+const turnkey = TARIFFS.find(t => t.id === "turnkey");
+assert.equal(turnkey.minPrice, 6000);
+assert.deepEqual(turnkey.rateOptions.map(t => t.rate), [410,500]);
 const calc = readFileSync('src/components/Calculator.tsx', 'utf8');
 assert.ok(calc.includes('min={25}'));
-assert.ok(calc.includes('Math.max(rate * area, tariff.minPrice)'));
+assert.ok(calc.includes('calculateVisit(rate && area > 0 ? [rate * area] : [])'));
 const html = readFileSync('dist/index.html', 'utf8');
 assert.ok(html.includes('https://vershina40.ru/'));
 assert.ok(html.includes('Калуге'));
