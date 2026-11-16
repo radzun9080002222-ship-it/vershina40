@@ -1,11 +1,9 @@
 import { Phone } from "lucide-react";
 import { PHONE_HREF } from "../data";
-import { useState } from "react";
 import Messengers from "./Messengers";
+import MonthlyCleaningBadge from "./MonthlyCleaningBadge";
 
 export default function Hero() {
-  const [area] = useState<number | null>(null);
-  // Calendar statistics are not enabled for this domain yet; show the truthful fallback.
   return (
     <section id="top" className="relative overflow-hidden bg-white pt-[72px]">
       <div className="container-x grid items-center gap-10 py-14 md:py-20 lg:grid-cols-[1.1fr_1fr]">
@@ -51,13 +49,7 @@ export default function Hero() {
         </div>
         <div className="relative">
           <img src="/images/hero-kaluga.webp" alt="Светлая квартира с видом на музей космонавтики и ракету «Восток» в Калуге" className="aspect-[4/5] w-full rounded-3xl object-cover" fetchPriority="high" />
-          <div className="absolute -bottom-5 -left-5 hidden rounded-2xl bg-white p-5 shadow-card md:block">
-            <div className="text-[11px] font-semibold uppercase tracking-widest2 text-emerald">{area === null ? 'приёмка по стандарту' : 'убрано в этом месяце'}</div>
-            <div className="mt-1 text-2xl font-bold text-graphite">
-              {area === null ? '47 пунктов' : `${area.toLocaleString('ru-RU')} м²`}
-            </div>
-            {area !== null && <div className="mt-1 text-xs text-ink/55">по всем городам «Вершины»</div>}
-          </div>
+          <MonthlyCleaningBadge />
         </div>
       </div>
     </section>
